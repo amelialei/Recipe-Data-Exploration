@@ -1,5 +1,6 @@
 # Recipe-Data-Exploration
 
+This project is for DSC80 at UCSD. 
 by Amelia Lei and Kyra Deng
 
 ---
@@ -11,3 +12,7 @@ The world of cooking has taken a change as people start to take on fast-paced li
 The first dataset we are given contains information for 83782 recipes, and comes from food.com. It contains 10 columns, with the descriptions below. 
 
 The second dataset we are given contains people's ratings on the recipes and also comes from food.com. It contains 5 columns, and has 731,927 total reviews. 
+
+## Data Cleaning and Exploratory Data Analysis
+
+Before conducting any analysis, we first merged the two datasets together to have one cohesive dataset to work with. The two dataframes have one column in common; the "id" and "recipe_id" columns. We merge on those columns and drop the "recipe_id" column. 
