@@ -73,3 +73,14 @@ For our baseline model, we used a RandomForestClassifier. The quantitative varia
 
 
 ## Fairness Analysis
+In our fairness analysis, we wanted to test if our model performed worse on recipes that were considered snacks. This means our Group X was recipes that we categorized as a snack (under 250 calories) and our Group Y was recipes that we categorized as a meal (over 250 calories).
+
+Evaluation Metric: Accuracy
+
+Null Hypothesis: The classifier's accuracy is the same for both snacks and meals, and any differences are due to chance
+
+Alternative Hypothesis: The classifier's accuracy is higher for meals
+
+Test Statistic: Difference in accuracy (meal - snack)
+
+Significance Level: alpha = 0.05
