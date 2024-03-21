@@ -29,7 +29,7 @@ Lastly, since we want to work with quick recipes, or recipes that are 30 minutes
 
 One column in the dataset wth missing values that may be NMAR is the  description column. The missingness may be due to the user thinking their recipe does not need a description because it is straightfoward enough. Another reasons may be ebcause the user does not have enough time to write a description on top of writing the rest of the recipe so they leave it out as it's not necesssary.
 
-### Missingness Dependancy 
+### Missingness Dependency 
 
 Another column whose missingness we decided to investigate was the reviews column. While running our permutation tests to see if the distributions of the other columns remained the same when reviews was missing was when it was not, we found that the missigness of reviews does not depend on name but does depend on total fat. 
 
@@ -59,10 +59,15 @@ We chose the absolute value of Pearson's R because we want to see how strong of 
 We end up with an R value of 0.006323716062416152, and a p-value of 0.045529470241813606. With significance level alpha=0.05, we fail to reject the null in favor of the alternate, where there is a correlation between the average recipe rating and the amount of sodium in each individual recipe. 
 
 ## Framing a Prediction Problem
+We are trying to predict the average rating of a recipe given predictors are the nutritional facts of the recipe itself. 
 
 
 ## Baseline Model
+For our model, we used RandomForestClassifier. We had both categorical and numerical features. 
 
+
+
+Describe your model and state the features in your model, including how many are quantitative, ordinal, and nominal, and how you performed any necessary encodings. Report the performance of your model and whether or not you believe your current model is “good” and why.
 
 ## Final Model
 
