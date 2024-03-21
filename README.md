@@ -11,8 +11,7 @@ The world of cooking has taken a change as people start to take on fast-paced li
 
 The first dataset we are given contains information for 83782 recipes, and comes from food.com. It contains 10 columns, with the descriptions below. 
 
-<iframe src="recipes_description" width=800 height=600 frameBorder=0></iframe>
-
+<img src="recipes_description.jpeg" width=800 height=600></img>
 
 
 The second dataset we are given contains people's ratings on the recipes and also comes from food.com. It contains 5 columns, and has 731,927 total reviews. 
