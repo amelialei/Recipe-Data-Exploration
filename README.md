@@ -46,6 +46,18 @@ The head of the right half of our cleaned dataframe:
 
 
 
+### Interesting Aggregates
+
+|   avg_rating_est |   ('mean', 'sodium (PDV)') |   ('median', 'sodium (PDV)') |   ('std', 'sodium (PDV)') |   ('max', 'sodium (PDV)') |
+|-----------------:|---------------------------:|-----------------------------:|--------------------------:|--------------------------:|
+|                1 |                    45.4286 |                            7 |                  306.206  |                      4715 |
+|                2 |                    41.8764 |                           11 |                  162.824  |                      2362 |
+|                3 |                    17.5636 |                            9 |                   28.1599 |                       582 |
+|                4 |                    21.5374 |                           11 |                   64.6724 |                      4727 |
+|                5 |                    24.0827 |                           10 |                  114.777  |                      4717 |
+
+
+
 ## Assessment of Missingness 
 ### NMAR Analysis
 
