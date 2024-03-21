@@ -16,6 +16,8 @@ The first dataset we are given contains information for 83782 recipes, and comes
 
 The second dataset we are given contains people's ratings on the recipes and also comes from food.com. It contains 5 columns, and has 731,927 total reviews. 
 
+<img src="ratings_description.jpeg" >
+
 ## Data Cleaning and Exploratory Data Analysis
 
 ### Data Cleaning
@@ -64,7 +66,7 @@ The distribution is left-skewed, meaning that most recipes in the dataset have a
   frameborder="0"
 ></iframe>
 
-THe boxplot of the 26 to 30 group is the only boxplot that doens't contain any outliers. This may be because there is less variability and less recipes overall that require 26 to 30 ingredients. As the range of ingredients increaes, the number of outliers appears to decrease, For all ranges of ingredients, the median average rating appears to be around 4 to 5. 
+The boxplot of the 26 to 30 group is the only boxplot that doens't contain any outliers. This may be because there is less variability and less recipes overall that require 26 to 30 ingredients. As the range of ingredients increaes, the number of outliers appears to decrease. As the ranges of ingredients increase, the median number of calories tends to increase as well.  
 
 ### Interesting Aggregates
 
