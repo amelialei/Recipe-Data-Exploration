@@ -117,9 +117,7 @@ We end up with an R value of 0.006323716062416152, and a p-value of 0.0455294702
 
 
 ## Baseline Model
-For our baseline model, we used the nutritional facts, along with the 'minutes', 'n_ingredients', 'n_steps' columns for the X variable. In addition, we had created a 'avg_rating_est' column earlier which groups the avg_ratings into these categories
-
-Describe your model and state the features in your model, including how many are quantitative, ordinal, and nominal, and how you performed any necessary encodings. Report the performance of your model and whether or not you believe your current model is “good” and why.
+For our baseline model, we used the nutritional facts, along with the 'minutes', 'n_ingredients', 'n_steps' columns as our predictors because they correlated the most with our target variable. In addition, we had created a 'avg_rating_est' column earlier which groups the avg_ratings into these categories: '0 to 5', '6 to 10','11 to 15','16 to 20','21 to 25','26 to 30' , and 'over 30', which will also be used as a predictor. We create another column that rounds all of the ratings in the 'avg_rating' column to either 1, 2, 3, 4, 5, making this our target variable. There are 11 nominal features, and one categorical feature. The accuracy score ended up being around 0.93, which is good but it can be improved even more. 
 
 ## Final Model
 
