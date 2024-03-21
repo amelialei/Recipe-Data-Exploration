@@ -116,10 +116,14 @@ We chose the absolute value of Pearson's R because we want to see how strong of 
 We end up with an R value of 0.006323716062416152, and a p-value of 0.045529470241813606. With significance level alpha=0.05, we fail to reject the null in favor of the alternate, where there is a correlation between the average recipe rating and the amount of sodium in each individual recipe. 
 
 ## Framing a Prediction Problem
+We want to predict the rating for a recipe based on its features. To do this, we will be performing a multi-class classification as we are predicting whether the recipe will a 0 star, 1 star, 2 star, 3 star, 4 star, or 5 star recipe. 
+Our response variable is the rating of the recipe. We chose this because rating represents the likability of the recipe which is aligned with the goals of our prediction problem and our data exploration. 
+We will only use features of the dataset that are available at the time of our prediction. These are features that are known before someone has tried the recipe such as the number of ingredients, number of steps, nutrition facts (calories, sodium, carbohydrates, etc.), and description. We will not use review in our model training as that is that information that we would know before a user has tried the recipe. 
+The evaluation metric we chose was accuracy. Although the initial dataset is unbalanced due to a disproportionate amount of 5 star ratings, we will preprocess the data so that the training set consists of an equal amount of randomly sampled 1 star, 2 star, 3 star, 4 star, and 5 star ratings. Thus, accuracy the most appropriate evaluation metric over other metrics like F1 score because it works best on balanced data. 
 
 
 ## Baseline Model
-For our baseline model, we used the nutritional facts, along with the 'minutes', 'n_ingredients', 'n_steps' columns as our predictors because they correlated the most with our target variable. In addition, we had created a 'avg_rating_est' column earlier which groups the avg_ratings into these categories: '0 to 5', '6 to 10','11 to 15','16 to 20','21 to 25','26 to 30' , and 'over 30', which will also be used as a predictor. We create another column that rounds all of the ratings in the 'avg_rating' column to either 1, 2, 3, 4, 5, making this our target variable. There are 11 nominal features, and one categorical feature. The accuracy score ended up being around 0.93, which is good but it can be improved even more. 
+For our baseline model, we used the nutritional facts, along with the 'minutes', 'n_ingredients', 'n_steps' columns as our predictors because they correlated the most with our target variable. In addition, we had created a 'number of ingredients' column earlier which groups the avg_ratings into these categories: '0 to 5', '6 to 10','11 to 15','16 to 20','21 to 25','26 to 30' , and 'over 30', which will also be used as a predictor. We create another column that rounds all of the ratings in the 'avg_rating' column to either 1, 2, 3, 4, 5, making this our response variable. There are 11 nominal features, and one categorical feature. The accuracy score ended up being around 0.93, which is good but it can be improved even more. 
 
 ## Final Model
 
@@ -136,3 +140,7 @@ Alternative Hypothesis: The classifier's accuracy is higher for meals
 Test Statistic: Difference in accuracy (meal - snack)
 
 Significance Level: alpha = 0.05
+
+After running our permutation test, we got a p-value of 0.68. Therefore, we fail to reject the null hypothesis at the 0.05 significance level, meaning that the classifier achieves accuracy parity. 
+
+
