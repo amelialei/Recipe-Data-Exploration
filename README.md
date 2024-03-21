@@ -54,7 +54,17 @@ The head of the right half of our cleaned dataframe:
   frameborder="0"
 ></iframe>
 
+The distribution is left-skewed, meaning that most recipes in the dataset have a high average rating. Over half of the recipes have an average rating around 5 stars. 
+
 ### Bivariate Analysis 
+<iframe
+  src="graphs/bivariate.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+THe boxplot of the 26 to 30 group is the only boxplot that doens't contain any outliers. This may be because there is less variability and less recipes overall that require 26 to 30 ingredients. As the range of ingredients increaes, the number of outliers appears to decrease, For all ranges of ingredients, the median average rating appears to be around 4 to 5. 
 
 ### Interesting Aggregates
 
