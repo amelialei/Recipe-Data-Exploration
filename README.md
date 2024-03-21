@@ -84,7 +84,7 @@ We created a pivot table to examine the mean sodium content of recipes at each l
 
 One column in the dataset wth missing values that may be NMAR is the  description column. The missingness may be due to the user thinking their recipe does not need a description because it is straightfoward enough. Another reasons may be ebcause the user does not have enough time to write a description on top of writing the rest of the recipe so they leave it out as it's not necesssary.
 
-### Missingness Dependancy 
+### Missingness Dependency 
 
 Another column whose missingness we decided to investigate was the reviews column. While running our permutation tests to see if the distributions of the other columns remained the same when reviews was missing was when it was not, we found that the missigness of reviews does not depend on name but does depend on total fat. 
 
@@ -114,15 +114,12 @@ We chose the absolute value of Pearson's R because we want to see how strong of 
 We end up with an R value of 0.006323716062416152, and a p-value of 0.045529470241813606. With significance level alpha=0.05, we fail to reject the null in favor of the alternate, where there is a correlation between the average recipe rating and the amount of sodium in each individual recipe. 
 
 ## Framing a Prediction Problem
-We want to predict the rating for a reicpe based on its features. To do this, we will be performing a multi-class classification as we are predicting whether the recipe will a 0 star, 1 star, 2 star, 3 star, 4 star, or 5 star recipe. 
-Our response variable is the rating of the recipe. We chose this because rating represents the likeability of the recipe which is aligned with the goals of our prediction problem and our data exploration. 
-We will only use features of the dataset that are available at the time of our prediction. These are features that are known before someone has tried the recipe such as the number of ingredients, number of steps, nutrition facts (calories, sodium, carbohydrates, etc.), and description. We will not use review in our model training as that is that information that we would know before a user has tried the recipe. 
-The metric we chose was F1-score as opposed to accuracy because when looking at our dataset, there is an imbalance between the number of recipes that have a 4 or 5 star rating compared to recipes that receive a 1 or 2 star rating. Therefore, if we were to use accuracy as our metric, a model that predicts that every recipe was 5 star could recieve high accuracy score, but it would be less useful than if we were to use the F1-score
 
 
 ## Baseline Model
-For our baseline model, we used a RandomForestClassifier. The quantitative variables we used were the recipe's nutrition facts: calories, total fat, sugar, sodium, protein, saturated fat, carbohydrates. For the quantitative variables, we used the StandardScaler to make all the values standardized. At this stage, we do not think our model is good yet because its very basic. Every recipe consists of many features such as the amount of time it takes to prepare and the ingredients that are needed which can be helpful in predicting rating, but we are only looking at the nutrition facts.   
+For our baseline model, we used the nutritional facts, along with the 'minutes', 'n_ingredients', 'n_steps' columns for the X variable. In addition, we had created a 'avg_rating_est' column earlier which groups the avg_ratings into these categories
 
+Describe your model and state the features in your model, including how many are quantitative, ordinal, and nominal, and how you performed any necessary encodings. Report the performance of your model and whether or not you believe your current model is “good” and why.
 
 ## Final Model
 
