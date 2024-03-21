@@ -18,6 +18,7 @@ The second dataset we are given contains people's ratings on the recipes and als
 
 ## Data Cleaning and Exploratory Data Analysis
 
+### Data Cleaning
 Before conducting any analysis, we first merged the two datasets together to have one cohesive dataset to work with. The two dataframes have one column in common; the "id" and "recipe_id" columns. We merge on those columns and drop the "recipe_id" column. 
 In the new merged dataframe, we noticed that there were ratings of 0s for some recipes, and replaced those with np.NaN because the 0 was not a true reflection of the ratings for those recipes. In this dataframe, there were repeated recipes since some recipes had multiple ratings, so we got a series of average ratings per each unique recipe and added that back to the dataframe. This dataframe is named 'final'.
 We split up the values in the 'nutrition' column to individual columns named: 'calories (#)', 'total fat (PDV)', 'sugar (PDV)', 'sodium (PDV)', 'protein (PDV)', 'saturated fat (PDV)',  and 'carbohydrates (PDV)', with all the values in those columns being ints and we drop the 'nutrition' column. After checking the types of the values in the columns, we notice that the 'tags', 'steps' and 'ingredient' columns contains strings that are formatted like lists, so we changed the strings into actual lists with the commas in the original string representing the different elements within each list. We changed the 'submitted' and 'date' column from an object to a datetime data type. 
@@ -45,6 +46,15 @@ The head of the right half of our cleaned dataframe:
 | 2011-12-05 00:00:00 |        5 | I'm new to grilling on charcoal by myself, and this worked really well. I seasoned a rib eye steak and let it sit for awhile to meld flavors. This spray kept it nice and moist. I really liked review by steve in Fl in that spices clogged up his sprayer - so this is the way that I will go from now on. Thanks Greg in San Diego for sharing a new favorite. Made for Healthy Choices Tag.                                          |         4.75 |           47.2 |                 0 |             2 |              0 |               0 |                     0 |                     0 |
 
 
+### Univariate Analysis
+<iframe
+  src="graphs/univariate.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+### Bivariate Analysis 
 
 ### Interesting Aggregates
 
