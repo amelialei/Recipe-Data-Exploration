@@ -65,8 +65,8 @@ We will only use features of the dataset that are available at the time of our p
 The metric we chose was F1-score as opposed to accuracy because when looking at our dataset, there is an imbalance between the number of recipes that have a 4 or 5 star rating compared to recipes that receive a 1 or 2 star rating. Therefore, if we were to use accuracy as our metric, a model that predicts that every recipe was 5 star could recieve high accuracy score, but it would be less useful than if we were to use the F1-score
 
 
-
 ## Baseline Model
+For our baseline model, we used a RandomForestClassifier. The quantitative variables we used were the recipe's nutrition facts: calories, total fat, sugar, sodium, protein, saturated fat, carbohydrates. For the quantitative variables, we used the StandardScaler to make all the values standardized. At this stage, we do not think our model is good yet because its very basic. Every recipe consists of many features such as the amount of time it takes to prepare and the ingredients that are needed which can be helpful in predicting rating, but we are only looking at the nutrition facts.   
 
 
 ## Final Model
