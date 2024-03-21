@@ -56,6 +56,7 @@ The head of the right half of our cleaned dataframe:
 |                4 |                    21.5374 |                           11 |                   64.6724 |                      4727 |
 |                5 |                    24.0827 |                           10 |                  114.777  |                      4717 |
 
+We created a pivot table to examine the mean sodium content of recipes at each level of rating. In the aggregated data, we found that there is a significantly larger variability in the sodium content for 1 star recipes, and a significantly lower variability for 3 star recipes. The average sodium content of recipes that are deemed "lower quality" or "less enjoyable" (1 star and 2 star) are both in the 40s range, while the avergae sodium content for more reputable recipes (3 star and above) are in the 10s and 20s rnage. 
 
 
 ## Assessment of Missingness 
