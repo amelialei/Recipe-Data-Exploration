@@ -143,4 +143,11 @@ Significance Level: alpha = 0.05
 
 After running our permutation test, we got a p-value of 0.68. Therefore, we fail to reject the null hypothesis at the 0.05 significance level, meaning that the classifier achieves accuracy parity. 
 
+<iframe
+  src="graphs/fairness_analysis.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 
