@@ -117,7 +117,7 @@ We end up with an R value of 0.006323716062416152, and a p-value of 0.0455294702
 
 
 ## Baseline Model
-
+For our baseline model, we used the nutritional facts, along with the 'minutes', 'n_ingredients', 'n_steps' columns for the X variable. In addition, we had created a 'avg_rating_est' column earlier which groups the avg_ratings into these categories
 
 Describe your model and state the features in your model, including how many are quantitative, ordinal, and nominal, and how you performed any necessary encodings. Report the performance of your model and whether or not you believe your current model is “good” and why.
 
