@@ -59,6 +59,11 @@ We chose the absolute value of Pearson's R because we want to see how strong of 
 We end up with an R value of 0.006323716062416152, and a p-value of 0.045529470241813606. With significance level alpha=0.05, we fail to reject the null in favor of the alternate, where there is a correlation between the average recipe rating and the amount of sodium in each individual recipe. 
 
 ## Framing a Prediction Problem
+We want to predict the rating for a reicpe based on its features. To do this, we will be performing a multi-class classification as we are predicting whether the recipe will a 0 star, 1 star, 2 star, 3 star, 4 star, or 5 star recipe. 
+Our response variable is the rating of the recipe. We chose this because rating represents the likeability of the recipe which is aligned with the goals of our prediction problem and our data exploration. 
+We will only use features of the dataset that are available at the time of our prediction. These are features that are known before someone has tried the recipe such as the number of ingredients, number of steps, nutrition facts (calories, sodium, carbohydrates, etc.), and description. We will not use review in our model training as that is that information that we would know before a user has tried the recipe. 
+The metric we chose was F1-score as opposed to accuracy because when looking at our dataset, there is an imbalance between the number of recipes that have a 4 or 5 star rating compared to recipes that receive a 1 or 2 star rating. Therefore, if we were to use accuracy as our metric, a model that predicts that every recipe was 5 star could recieve high accuracy score, but it would be less useful than if we were to use the F1-score
+
 
 
 ## Baseline Model
