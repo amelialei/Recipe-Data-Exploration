@@ -18,13 +18,15 @@ The second dataset we are given contains people's ratings on the recipes and als
 
 <img src="ratings_description.jpeg" >
 
+We will be working mostly with the ratings, nutrition, n_ingredients, n_steps, and minutes columns. 
+
 ## Data Cleaning and Exploratory Data Analysis
 
 ### Data Cleaning
 Before conducting any analysis, we first merged the two datasets together to have one cohesive dataset to work with. The two dataframes have one column in common; the "id" and "recipe_id" columns. We merge on those columns and drop the "recipe_id" column. 
 In the new merged dataframe, we noticed that there were ratings of 0s for some recipes, and replaced those with np.NaN because the 0 was not a true reflection of the ratings for those recipes. In this dataframe, there were repeated recipes since some recipes had multiple ratings, so we got a series of average ratings per each unique recipe and added that back to the dataframe. This dataframe is named 'final'.
 We split up the values in the 'nutrition' column to individual columns named: 'calories (#)', 'total fat (PDV)', 'sugar (PDV)', 'sodium (PDV)', 'protein (PDV)', 'saturated fat (PDV)',  and 'carbohydrates (PDV)', with all the values in those columns being ints and we drop the 'nutrition' column. After checking the types of the values in the columns, we notice that the 'tags', 'steps' and 'ingredient' columns contains strings that are formatted like lists, so we changed the strings into actual lists with the commas in the original string representing the different elements within each list. We changed the 'submitted' and 'date' column from an object to a datetime data type. 
-Lastly, since we want to work with quick recipes, or recipes that are 30 minutes or shorter, so we filter for those recipes only and recipes with less than 1000 calories so we can focus on a more specific dataset.
+Lastly, since we want to work with quick recipes, or recipes that are 30 minutes or shorter, so we filter for those recipes only and recipes with less than 1000 calories so we can focus on a more specific dataset with less outliers.
 
 The head of the left half of our cleaned dataframe:
 
@@ -78,7 +80,7 @@ The boxplot of the 26 to 30 group is the only boxplot that doens't contain any o
 |                4 |                    21.5374 |                           11 |                   64.6724 |                      4727 |
 |                5 |                    24.0827 |                           10 |                  114.777  |                      4717 |
 
-We created a pivot table to examine the mean sodium content of recipes at each level of rating. In the aggregated data, we found that there is a significantly larger variability in the sodium content for 1 star recipes, and a significantly lower variability for 3 star recipes. The average sodium content of recipes that are deemed "lower quality" or "less enjoyable" (1 star and 2 star) are both in the 40s range, while the avergae sodium content for more reputable recipes (3 star and above) are in the 10s and 20s rnage. 
+We created a pivot table to examine the mean sodium content of recipes at each level of rating. In the aggregated data, we found that there is a significantly larger variability in the sodium content for 1 star recipes, and a significantly lower variability for 3 star recipes. The average sodium content of recipes that are deemed "lower quality" or "less enjoyable" (1 star and 2 star) are both in the 40s range, while the avergae sodium content for more reputable recipes (3 star and above) are in the 10s and 20s range. 
 
 
 ## Assessment of Missingness 
@@ -90,17 +92,53 @@ One column in the dataset wth missing values that may be NMAR is the  descriptio
 
 Another column whose missingness we decided to investigate was the reviews column. While running our permutation tests to see if the distributions of the other columns remained the same when reviews was missing was when it was not, we found that the missigness of reviews does not depend on name but does depend on total fat. 
 
-#### 1. Reviews and Name
+#### Rating and Total Fat (Dependent)
 
-Null Hypothesis: The distribution of the name is the same when reviews is missing and when it's not missing.
+Null Hypothesis: The distribution of the total fat is the same when rating is missing and when it's not missing.
 
-Alternative Hypothesis: The distribution of name is different when reviews is missing and when it's not missing.
+Alternative Hypothesis: The distribution of total fat is different when rating is missing and when it's not missing.
 
-Test Statistic: Since name is a categorical variable, we use total variation distance as our test statistic
+Test Statistic: Since total fat is a numerical variable, we use absolute difference in means as our test statistic
 
-We reassigned the name column with a shuffled version of names. 
+We reassigned the total fat column with a shuffled version of total fat. Then we ran a permutation test to test the dependency of the missingness of rating on total. From our permutation test, we got a p-value of 0.02 so we reject the null hypothesis at the alpha = 0.05 significance level. 
+
+<iframe
+  src="graphs/missingness1.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+<iframe
+  src="graphs/distribution1.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 
+
+#### Rating and N Steps (Independent)
+
+Null Hypothesis: The distribution of the n_steps is the same when rating is missing and when it's not missing.
+
+Alternative Hypothesis: The distribution of n_steps is different when rating is missing and when it's not missing.
+
+Test Statistic: Since n_steps is a numerical variable, we use absolute difference in means as our test statistic
+
+We reassigned the n_steps column with a shuffled version of n_steps. Then we ran a permutation test to test the dependency of the missingness of rating on n_steps. From our permutation test, we got a p-value of 0.37 so we fail to reject the null hypothesis at the alpha = 0.05 significance level. 
+
+<iframe
+  src="graphs/missingness2.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+<iframe
+  src="graphs/distribution2.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 
 
@@ -117,15 +155,16 @@ We end up with an R value of 0.006323716062416152, and a p-value of 0.0455294702
 
 ## Framing a Prediction Problem
 We want to predict the rating for a recipe based on its features. To do this, we will be performing a multi-class classification as we are predicting whether the recipe will a 0 star, 1 star, 2 star, 3 star, 4 star, or 5 star recipe. 
-Our response variable is the rating of the recipe. We chose this because rating represents the likability of the recipe which is aligned with the goals of our prediction problem and our data exploration. 
+Our response variable is the rating of the recipe. We created a new column that rounded the average rating to use as our 'y'. We chose this because rating represents the likability of the recipe which is aligned with the goals of our prediction problem and our data exploration. 
 We will only use features of the dataset that are available at the time of our prediction. These are features that are known before someone has tried the recipe such as the number of ingredients, number of steps, nutrition facts (calories, sodium, carbohydrates, etc.), and description. We will not use review in our model training as that is that information that we would know before a user has tried the recipe. 
 The evaluation metric we chose was accuracy. Although the initial dataset is unbalanced due to a disproportionate amount of 5 star ratings, we will preprocess the data so that the training set consists of an equal amount of randomly sampled 1 star, 2 star, 3 star, 4 star, and 5 star ratings. Thus, accuracy the most appropriate evaluation metric over other metrics like F1 score because it works best on balanced data. 
 
 
 ## Baseline Model
-For our baseline model, we used the nutritional facts, along with the 'minutes', 'n_ingredients', 'n_steps' columns as our predictors because they correlated the most with our target variable. In addition, we had created a 'number of ingredients' column earlier which groups the avg_ratings into these categories: '0 to 5', '6 to 10','11 to 15','16 to 20','21 to 25','26 to 30' , and 'over 30', which will also be used as a predictor. We create another column that rounds all of the ratings in the 'avg_rating' column to either 1, 2, 3, 4, 5, making this our response variable. There are 11 nominal features, and one categorical feature. The accuracy score ended up being around 0.93, which is good but it can be improved even more. 
+For our baseline model, we used the nutritional facts and 'number of ingredients' columns as our predictors because they correlated the most with our target variable. We created the 'number of ingredients' column earlier to group 'n_ingredients' into these categories: '0 to 5', '6 to 10','11 to 15','16 to 20','21 to 25','26 to 30' , and 'over 30'. There are 7 nominal features, and one categorical feature. For the nomical features, we used StandardScaler() to standardize all the values, and for the categorical column, we used the OneHotEncoder(). The accuracy score ended up being around 0.352, which is not good. This may be beacuse there are many other features of a recipe that contribute to the rating that isn't accounted for yet in our model. Right now, we are only looking at the ingredients and nutritional value, but rating can also be affected by factors like complexity. 
 
 ## Final Model
+We engineered 2 new features, and added two more columns from the dataset to transform. The first feature we created was the recipe complexity which we got by adding the number of steps and number of minutes for each recipe. We chose this because the more complex a recipe is, the lower the raitng might be since we narrowed the dataset down to quick 30 minute recipes so a higher complexity may seem like too much work. For the second feature, we wanted to analyze the ratio of protein to calories. A lot of people who are looking for quick recipes would also want there to be a higher protein to calorie ratio for its health benefits, and they might give it a higher rating if its healthier and more beneficial. We also decided to use the TfidfVectorizer() on the 'ingredients' and 'description' column because there may be certain keywords or ingredients that tend to correlate to a higher or lower rating. In order to select the best hyperparameters, we did a grid search on 'max_depth', 'min_samples_split', and 'criterion' with a cross validation of 5. The best hyperparameters were a a 'max_depth' of 18, 'min_samples_split' of 2, and 'criterion' of entropy. In the end, our final model had an accuracy of 0.432 which is 8% higher than the baseline. 
 
 
 ## Fairness Analysis
