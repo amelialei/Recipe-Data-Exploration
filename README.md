@@ -1,8 +1,5 @@
 # Recipes Analysis
 
-This project is for DSC80 at UCSD. 
-by Amelia Lei and Kyra Deng
-
 ---
 
 ## Introduction
